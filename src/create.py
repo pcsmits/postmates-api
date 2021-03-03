@@ -14,7 +14,7 @@ def create_main():
     dropoff_name = request.form.get('dropoff_name', "")
     pickup_name = request.form.get('pickup_name', "")
     manifest = request.form.get('manifest', "")
-    tip = request.form.get('tip', "")
+    tip = validate_tip(request.form.get('tip', 0))
 
     create_data = {
         'dropoff_address': '1900 W North Ave, Chicago, Il 60622',
@@ -38,3 +38,14 @@ def create_main():
     resp = requests.post(url, data = create_data, headers = header_data)
 
     return f'{resp.text} ...{resp.status_code}...{create_data}'
+
+
+def validate_tip(tip):
+    tip = str(tip).replace(".", "")
+    tip = str(tip).replace("$", "")
+
+    if int(tip) > 999:
+        #Tip is too large
+        tip = 199
+
+    return tip
