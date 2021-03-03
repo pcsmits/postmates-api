@@ -1,21 +1,30 @@
-from flask import Blueprint, current_app
+from flask import Blueprint, current_app, request
 
 import requests
 
 create = Blueprint('create', __name__)
 
-@create.route('/create')
+@create.route('/create', methods=['GET', 'POST'])
 def create_main():
+
+    dropoff_address = request.form.get('dropoff_address', "")
+    pickup_address = request.form.get('pickup_address', "")
+    dropoff_number = request.form.get('dropoff_number', "")
+    pickup_number = request.form.get('pickup_number', "")
+    dropoff_name = request.form.get('dropoff_name', "")
+    pickup_name = request.form.get('pickup_name', "")
+    manifest = request.form.get('manifest', "")
+    tip = request.form.get('tip', "")
 
     create_data = {
         'dropoff_address': '1900 W North Ave, Chicago, Il 60622',
         'pickup_address': '200 W Menomonee St, Chicago, Il 60614',
-        'pickup_phone_number': '12625737234',
-        'dropoff_phone_number': '12623094905',
-        'manifest': 'small puzzle',
-        'pickup_name': 'Parker Smits',
-        'dropoff_name': 'Yuriy Onyskiv',
-        'tip': '199',
+        'pickup_phone_number': f'{pickup_number}',
+        'dropoff_phone_number': f'{dropoff_number}',
+        'pickup_name': f'{pickup_name}',
+        'dropoff_name': f'{dropoff_name}',
+        'manifest': f'{manifest}',
+        'tip': f'{tip}',
     }
 
     header_data = {
@@ -28,4 +37,4 @@ def create_main():
 
     resp = requests.post(url, data = create_data, headers = header_data)
 
-    return f'{resp.text} ...{resp.status_code}'
+    return f'{resp.text} ...{resp.status_code}...{create_data}'
