@@ -17,8 +17,8 @@ def create_main():
     tip = validate_tip(request.form.get('tip', 0))
 
     create_data = {
-        'dropoff_address': '1900 W North Ave, Chicago, Il 60622',
-        'pickup_address': '200 W Menomonee St, Chicago, Il 60614',
+        'dropoff_address': f'{dropoff_address}',
+        'pickup_address': f'{pickup_address}',
         'pickup_phone_number': f'{pickup_number}',
         'dropoff_phone_number': f'{dropoff_number}',
         'pickup_name': f'{pickup_name}',
