@@ -8,10 +8,10 @@ quote = Blueprint('quote', __name__)
 def quote_main():
 
     quote_data = {
-        'dropoff_address': '1900 W North Ave, Chicago, Il 60622',
-        'pickup_address': '200 W Menomonee St, Chicago, Il 60614',
-        'pickup_phone_number': '12625737234',
-        'dropoff_phone_number': '12623094905',
+        'dropoff_address': '10 W North Ave, Chicago, Il 60622',
+        'pickup_address': '10 E Menomonee St, Chicago, Il 60614',
+        'pickup_phone_number': '155551234',
+        'dropoff_phone_number': '15559876',
     }
 
     header_data = {
